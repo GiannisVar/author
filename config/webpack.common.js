@@ -1,6 +1,5 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const NodePolyfillPlugin = require("node-polyfill-webpack-plugin")
 const { VueLoaderPlugin } = require('vue-loader');
 const Dotenv = require('dotenv-webpack');
 
@@ -29,7 +28,6 @@ module.exports = {
             template: path.resolve(__base, 'public', 'index.html'),
         }),
         new VueLoaderPlugin(),
-        new NodePolyfillPlugin(),
         new Dotenv()
     ],
 

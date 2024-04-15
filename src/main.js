@@ -8,7 +8,6 @@ import vClickOutside from "click-outside-vue3";
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import Vue3Toasity from 'vue3-toastify';
 import 'vue3-toastify/dist/index.css';
-import 'dotenv/config';
 
 const app = createApp(App);
 
