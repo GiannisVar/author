@@ -1,7 +1,7 @@
 <template>
     <div class="main_header">
         <span>Logo or Image</span>
-        <MainMenu @open_sidebar_menu="$emit('open_sidebar', $event )" />
+        <MainMenu @open_sidebar_menu="$emit('open_sidebar', $event )" @navigation="$emit('navigation')" />
     </div>
 </template>
 

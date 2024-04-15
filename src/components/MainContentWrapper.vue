@@ -1,6 +1,6 @@
 <template>
     <div class="main_content_wrapper">
-        <h1 class="title">{{ $t(`mainMenu.${$route.name || 'homepage'}`) }}</h1>
+        <h1 class="title">{{ $t(`mainTitle.${$route.name || 'homepage'}`) }}</h1>
         <router-view />
     </div>
 </template>
@@ -13,11 +13,11 @@ export default {
 
 <style lang="scss" scoped>
 .main_content_wrapper {
-    @apply w-full;
+    @apply w-full text-gray-500;
     .title {
         @apply text-center;
         &::after {
-            @apply w-full block bg-black mt-1;
+            @apply w-full block bg-black mt-1 opacity-30 mt-4;
             content: ' ';
             height: 1px;
         }

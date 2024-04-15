@@ -1,14 +1,22 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [],
+  content: [
+    "./index.html",
+    "./src/**/*.{vue,js,ts,jsx,tsx}",
+  ],
   theme: {
     extend: {},
     colors: {
-      black: '#000000',
-      white: '#FFFFFF',
-      nude: '#FEE2E2',
+      'black': '#000000',
+      'white': '#FFFFFF',
+      'nude': '#FEE2E2',
+      'gray-100': '#f7fafc',
+      'gray-200': '#EDF2F7',
+      'gray-500': '#464A51',
       'gold-50': '#CFC6A7',
       'gold-100': '#ADA68D',
+      'error-500': '#f56565',
+      'error-700': '#930900',
     },
     screens: {
       xs: '450px',

@@ -1,8 +1,8 @@
-import HomePage from '@/components/mainPages/HomePage';
-import AboutPage from '@/components/mainPages/AboutPage';
-import BookPage from '@/components/mainPages/BookPage';
-import PurchasePage from '@/components/mainPages/PurchasePage';
-import ContactMe from '@/components/mainPages/ContactMe';
+import HomePage from '../components/mainPages/HomePage';
+import AboutPage from '../components/mainPages/AboutPage';
+import BookPage from '../components/mainPages/BookPage';
+import PurchasePage from '../components/mainPages/PurchasePage';
+import ContactMe from '../components/mainPages/ContactMe';
 
 export const PAGES = {
     HOMEPAGE: {

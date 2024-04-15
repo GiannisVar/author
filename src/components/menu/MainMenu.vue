@@ -1,14 +1,14 @@
 <template>
     <div class="main_menu">
         <MqResponsive target="sm+">
-            <MainMenuList class="main_menu-list"/>
+            <MainMenuList class="main_menu-list" @navigate="$emit('navigation')" />
         </MqResponsive>
         <MqResponsive target="xs-" class="sidebar_menu">
             <font-awesome-icon v-if="!isSideBarMenuOpen" :icon="['fas', 'bars']" @click="sideBarChangeStatus" class="burger-icon"/>
             <transition name="slide">
                 <div v-if="isSideBarMenuOpen" v-click-outside="sideBarChangeStatus" class="sidebar">
                     <font-awesome-icon :icon="['fas','x']" @click="sideBarChangeStatus" class="close-button" />
-                    <MainMenuList class="sidebar-list" @navigate="sideBarChangeStatus" />
+                    <MainMenuList class="sidebar-list" @navigate="navigateHandler" />
                 </div>
             </transition>
         </MqResponsive>
@@ -36,9 +36,9 @@ export default {
         this.isSideBarMenuOpen = !this.isSideBarMenuOpen;
         this.$emit('open_sidebar_menu', this.isSideBarMenuOpen);
     },
-    onClickOutside() {
-        this.isSideBarMenuOpen = false;
-        this.$emit('open_sidebar_menu', this.isSideBarMenuOpen);
+    navigateHandler() {
+        this.sideBarChangeStatus();
+        this.$emit('navigation');
     }
   }
 }
@@ -46,7 +46,7 @@ export default {
 
 <style lang="scss" scoped>
 .main_menu {
-    @apply flex;
+    @apply flex z-20;
     &-list {
         :deep(.menu_item) {
             @apply px-3;
@@ -58,9 +58,9 @@ export default {
             @apply cursor-pointer;
         }
         .sidebar {
-            @apply flex flex-col fixed top-0 right-0 h-screen w-1/2 p-3 justify-start bg-nude;
+            @apply flex flex-col fixed top-0 right-0 h-screen w-1/2 p-3 justify-start overflow-y-auto bg-nude;
             max-width: 12em;
-            z-index:2;
+            z-index:1;
             @screen xs {
                 @apply w-2/5;
             }
@@ -68,7 +68,7 @@ export default {
                 @apply w-1/3;
             }
             .close-button {
-                @apply cursor-pointer ml-auto;
+                @apply cursor-pointer ml-auto mr-4 mt-8;
             }
             .sidebar-list {
                 @apply flex flex-col mt-8;
