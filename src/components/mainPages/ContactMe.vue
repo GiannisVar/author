@@ -128,17 +128,15 @@ export default {
           }, {
           publicKey: process.env.VUE_APP_EMAILJS_PUBLIC_KEY,
         })
-        .then(
-          () => {
-            this.updateToast(toaster, 'success', this.$t('toastrMessages.success'));
-            this.isSubmitting = false;
-            this.$refs.form.resetForm();
-          },
-          (error) => {
-           this.updateToast(toaster, 'error', this.$t('toastrMessages.error'));
-           this.isSubmitting = false;
-          },
-        );
+        .then(() => {
+          this.updateToast(toaster, 'success', this.$t('toastrMessages.success'));
+          this.isSubmitting = false;
+          this.$refs.form.resetForm();
+        })
+        .catch(() => {
+          this.updateToast(toaster, 'error', this.$t('toastrMessages.error'));
+          this.isSubmitting = false;
+        })
     },
     updateToast(toaster, type, message) {
       toast.update(toaster, {
