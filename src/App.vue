@@ -1,14 +1,18 @@
 <template>
   <div class="main_app" :class="{ 'main_app-with-background': isHomepage }">
-    <div v-if="isLoading" class="loading_mask">
-      <img :src="loaderImage" alt="loader" />
-    </div>
+    <Transition name="opacity1">
+      <div v-if="isLoading" class="loading_mask">
+        <img :src="loaderImage" alt="loader" />
+      </div>
+    </Transition>
     <MqResponsive target="xs-">
-      <div v-if="isSideBarMenuOpen" class="mask"></div>
+      <Transition name="opacity2">
+        <div v-if="isSideBarMenuOpen" class="mask"></div>
+      </Transition>
     </MqResponsive>
     <div class="main_content">
       <MainHeader class="header" @open_sidebar="sidebarMenuHandler" @navigation="setLoader(true)"/>
-      <MainContentWrapper />
+      <MainContentWrapper @navigation="setLoader(true)" />
       <SocialMediaWrapper class="footer"/>
     </div>
   </div>
@@ -86,22 +90,36 @@ export default {
     .loading_mask {
       @apply absolute w-screen h-screen opacity-80 bg-white z-30;
       img {
-        @apply absolute top-1/2 left-1/2;
-        width: 50px;
+        @apply absolute w-auto;
+        top: 45%;
+        left: 45%;
         height: 50px;
-        animation: bounce 1s infinite;
+        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 
-        @keyframes bounce {
+        @keyframes pulse {
           0%, 100% {
-            transform: translateY(-25%);
-            animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+            opacity: 1;
           }
           50% {
-            transform: translateY(0);
-            animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+            opacity: .5;
           }
         }
       }
+    }
+    .opacity1-enter-active,
+    .opacity1-leave-active,
+    .opacity2-enter-active,
+    .opacity2-leave-active {
+      transition: opacity 0.5s ease;
+    }
+
+    .opacity1-enter-from {
+      opacity: 0.8;
+    }
+    .opacity1-leave-to,
+    .opacity2-leave-to,
+    .opacity2-enter-from {
+      opacity: 0;
     }
     &-with-background {
       background:linear-gradient(0deg, rgba(254, 226, 226, 0.8), rgba(254, 226, 226, 0.9)), url('./assets/homepage_bg.png');

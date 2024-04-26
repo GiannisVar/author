@@ -1,7 +1,7 @@
 <template>
     <div class="main_content_wrapper">
         <h1 class="title">{{ $t(`mainTitle.${$route.name || 'homepage'}`) }}</h1>
-        <router-view />
+        <router-view @navigate="$emit('navigation')"/>
     </div>
 </template>
 
@@ -13,9 +13,9 @@ export default {
 
 <style lang="scss" scoped>
 .main_content_wrapper {
-    @apply w-full text-gray-500;
+    @apply w-full text-gray-500 py-8;
     .title {
-        @apply text-center;
+        @apply text-center pb-4 text-2xl;
         &::after {
             @apply w-full block bg-black mt-1 opacity-30 mt-4;
             content: ' ';

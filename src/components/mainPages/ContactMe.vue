@@ -130,13 +130,12 @@ export default {
         })
         .then(
           () => {
-            this.updateToast(toaster, 'success', 'Success !');
+            this.updateToast(toaster, 'success', this.$t('toastrMessages.success'));
             this.isSubmitting = false;
             this.$refs.form.resetForm();
           },
           (error) => {
-           console.log(error);
-           this.updateToast(toaster, 'error', 'Error !!');
+           this.updateToast(toaster, 'error', this.$t('toastrMessages.error'));
            this.isSubmitting = false;
           },
         );

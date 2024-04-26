@@ -51,7 +51,7 @@ module.exports = {
             },
             //Indicates that png files are assets to be processed by webpack
             {
-                test: /\.(png|svg|ico)$/,
+                test: /\.(png|jpg|svg|ico)$/,
                 type: 'asset/resource'
             }
         ]
