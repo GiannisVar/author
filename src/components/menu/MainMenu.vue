@@ -75,6 +75,9 @@ export default {
                 :deep(.link) {
                     @apply py-3 ml-auto mr-auto;
                 }
+                :deep(.main_menu_language_switcher) {
+                    @apply pt-12 ml-auto mr-auto;
+                }
             }
         }
         .slide-enter {

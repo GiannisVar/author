@@ -122,8 +122,9 @@ export default {
       opacity: 0;
     }
     &-with-background {
-      background:linear-gradient(0deg, rgba(254, 226, 226, 0.8), rgba(254, 226, 226, 0.9)), url('./assets/homepage_bg.png');
-      background-size:cover;
+      background:linear-gradient(0deg, rgba(254, 226, 226, 0.8), rgba(254, 226, 226, 0.9)), url('./assets/homepage_bg.jpg');
+      background-size: cover;
+      background-position: center center;
     }
   }
 </style>

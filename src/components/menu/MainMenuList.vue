@@ -5,18 +5,26 @@
                 <MenuItem :label="item.label" :isButton="item.isButton" :active="isActive" @click="navigate" />
             </router-link>
         </template>
+        <LanguageSwitcher class="main_menu_language_switcher"/>
     </div>
 </template>
 
 <script>
 import { MAIN_MENU_LIST_ITEMS } from '../../router/paths';
 import MenuItem from './MenuItem';
+import LanguageSwitcher from './LanguageSwitcher';
 
 export default {
   name: 'MainMenuList',
-  components: { MenuItem },
+  components: { MenuItem, LanguageSwitcher },
   created() {
     this.items = MAIN_MENU_LIST_ITEMS;
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.main_menu_language_switcher {
+  @apply ml-3;
+}
+</style>
