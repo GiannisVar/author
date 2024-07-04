@@ -6,7 +6,7 @@
             class="language" 
             :class="{'language--selected' : isLangSelected(language.value)}"
             @click="selectLanguage(language.value)"
-        >{{ $t(language.label) }}</span>
+        >{{ language.label }}</span>
     </template>
  </div>
 </template>

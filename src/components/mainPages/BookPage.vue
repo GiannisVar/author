@@ -9,14 +9,14 @@
         <img :src="bookHero" class="book-hero" />
         <h2 class="subtitle">{{ $t('bookPage.subtitle1') }}</h2>
       </MqResponsive>
-      <p v-html="$t('bookPage.initialInfo')"></p>
+      <p>{{ $t('bookPage.initialInfo') }}</p>
     </div>
     <TextDivider />
     <div class="main-description">
       <img :src="bookCover" class="book-cover" />
       <div class="description">
         <h2 class="subtitle">{{ $t('bookPage.subtitle2') }}</h2>
-        <p v-html="$t('bookPage.description')"></p>
+        <p>{{ $t('bookPage.description') }}</p>
       </div>
     </div>
     <router-link class="redirect-link" to="purchase" @click="$emit('navigate')">

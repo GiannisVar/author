@@ -26,7 +26,8 @@ app.use(Vue3Mq, {
         lg: 1366,
         xl: Infinity,
     },
-    defaultBreakpoint: 'lg'
+    defaultBreakpoint: 'lg',
+    preset: "tailwind"
 })
 
 app.use(vClickOutside)

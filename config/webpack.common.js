@@ -23,7 +23,7 @@ module.exports = {
     //Plugins to help and include additionals functionalities to webpack
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'Minimal Vue Webpack',
+            title: 'Angela Kalliora',
             favicon: path.resolve(__base, 'public', 'favicon.ico'),
             template: path.resolve(__base, 'public', 'index.html'),
         }),
@@ -42,7 +42,12 @@ module.exports = {
             //Vue loader. Says to webpack that files with .vue extension need to be processed by the vue-loader plugin
             {
                 test: /\.vue$/,
-                loader: 'vue-loader'
+                loader: 'vue-loader',
+                options: {
+                    compilerOptions: {
+                      isCustomElement: (tag) => ["swiper-container", "swiper-slide"].includes(tag)
+                    }
+                  },
             },
             //CSS loaders. Make possible import css files as js modules 
             {
