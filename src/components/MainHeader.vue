@@ -22,7 +22,7 @@ export default {
 .main_header {
     @apply flex justify-between;
     .logo {
-        max-width: 180px;
+        max-width: 150px;
     }
 }
 </style>

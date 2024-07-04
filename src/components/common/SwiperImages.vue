@@ -42,16 +42,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.swiper-container {
-  width: 100%;
-  height: 100%;
-}
 .swiper-img {
-    max-width: 100%;
-    max-height: 300px;
-    @apply mx-auto mb-10;
-    @screen md {
-      max-height: 500px;
-    }
+  max-width: 100%;
+  max-height: 300px;
+  @apply mx-auto mb-10;
+  @screen md {
+    max-height: 500px;
+  }
 }
 </style>
