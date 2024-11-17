@@ -85,7 +85,6 @@ export default {
     }
   },
   created() {
-    console.log(process.env.VUE_APP_EMAILJS_PUBLIC_KEY);
     this.schema = yup.object({
       first_name: yup.string().required().label(this.$t('contactForm.firstName')),
       last_name: yup.string().required().label(this.$t('contactForm.lastName')),
@@ -93,6 +92,12 @@ export default {
       subject: yup.string().required().label(this.$t('contactForm.subject')),
       message: yup.string().required().label(this.$t('contactForm.message')),
     });
+  },
+  mounted() {
+    if(this.$route.query?.purchaseMode) {
+      this.$refs.form.setFieldValue('subject', this.$t('contactForm.purchaseMode.subject'));
+      this.$router.replace({'query': null});
+    }
   },
   computed: {
     isFormFieldsEmpty() {

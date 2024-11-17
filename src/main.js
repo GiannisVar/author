@@ -21,7 +21,7 @@ app.use(Vue3Mq, {
     breakpoints: {
         xxs: 0,
         xs: 450,
-        sm: 700,
+        sm: 800,
         md: 992,
         lg: 1366,
         xl: Infinity,

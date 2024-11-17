@@ -19,9 +19,13 @@ export default {
         email: 'Διεύθυνση ηλεκρονικού ταχυδρομείου',
         subject: 'Θέμα',
         message: 'Περιεχόμενο Μηνύματος',
+        purchaseMode: {
+          subject: 'Πληροφορίες αναφορικά με την αγορά του βιβλίου'
+        },
     },
     buttons: {
         'submit': 'Αποστολή',
+        'learnMore': 'Μάθε Περισσότερα'
     },
     links: {
         buyBook: 'Απόκτησε το βιβλίο τώρα!',
@@ -40,5 +44,13 @@ export default {
         bio: 'I was born in Toronto Canada but left with my parents and older brother to go to Greece when I was less than 1 year old. I ’ve lived in Greece for about 29 years; studied Early Childhood Education and got my Master’s in Adult Education-Lifelong Learning from the University of Athens until I realized that something was missing. I decided to visit Canada (“Just for a year…just to see how it feels like to live there…”) I told everyone, and myself. But I fell in love… not only with my now husband but also with the East Coast. Two years in Nova Scotia traveling all around this beautiful province made me feel I need to stay more, see more, experience more. Since 2019 Canada is what I call home; now I live in Sturgeon Falls, Ontario with my husband and our beautiful daughter. I miss Greece a lot and try to go whenever I have the chance. Too many wonderful people there who are part of who I am. Too many breathtaking sceneries and special memories…',
         titleGR: 'A small taste of Greece',
         titleCA: 'A small taste of Canada'
+    },
+    homePage: {
+        titleStart: 'Welcome to the website of',
+        name: 'Angela Kalliora',
+        titleEnd: 'author of "Book Title"'
+    },
+    purchasePage: {
+        info: 'Unfortunatelly, there is no store where you can find the book. However, you can contact me for more information through ',
     }
 }

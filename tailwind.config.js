@@ -10,6 +10,8 @@ module.exports = {
       'black': '#000000',
       'white': '#FFFFFF',
       'nude': '#FEE2E2',
+      'nude-dark': '#E3AFAF',
+      'nude-darker': '#D89292',
       'gray-100': '#f7fafc',
       'gray-200': '#EDF2F7',
       'gray-500': '#464A51',

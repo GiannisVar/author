@@ -12,7 +12,7 @@
     </MqResponsive>
     <div class="main_content">
       <MainHeader class="header" @open_sidebar="sidebarMenuHandler" @navigation="setLoader(true)"/>
-      <MainContentWrapper @navigation="setLoader(true)" />
+      <MainContentWrapper :isHomePage="isHomepage" @navigation="setLoader(true)" />
       <SocialMediaWrapper class="footer"/>
     </div>
   </div>
@@ -49,7 +49,7 @@ export default {
     },
     isLoading: function () {
       document.body.style.overflow = this.isLoading ? 'hidden' : '';
-      this.isLoading && setTimeout( () => { this.setLoader(false) }, 2000);
+      this.isLoading && setTimeout( () => { this.setLoader(false) }, 1000);
     }
   },
   computed: {
@@ -122,7 +122,7 @@ export default {
       opacity: 0;
     }
     &-with-background {
-      background:linear-gradient(0deg, rgba(254, 226, 226, 0.8), rgba(254, 226, 226, 0.9)), url('./assets/homepage_bg.jpg');
+      background:linear-gradient(0deg, rgba(254, 226, 226, 0.9), rgba(254, 226, 226, 0.9)), url('./assets/homepage_bg.jpg');
       background-size: cover;
       background-position: center center;
     }

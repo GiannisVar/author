@@ -1,6 +1,9 @@
 <template>
   <div class="purchase_page">
-    <span>Content for Purchase Page</span>
+    <span>{{ $t('purchasePage.info') }}</span>
+    <router-link class="redirect-link" to="contact?purchaseMode=true" @click="$emit('navigate')">
+      <span class="link">this form</span>
+    </router-link>
   </div>
 </template>
 
@@ -11,4 +14,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.purchase_page {
+ .redirect-link {
+    .link {
+      @apply text-lg underline cursor-pointer;
+    }
+  }
+}
 </style>
