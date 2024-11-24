@@ -1,13 +1,13 @@
 <template>
     <div class="main_header">
-        <img class="logo" :src="logo" />
+        <img class="logo" :src="logo" alt="logo"/>
         <MainMenu @open_sidebar_menu="$emit('open_sidebar', $event )" @navigation="$emit('navigation')" />
     </div>
 </template>
 
 <script>
 import MainMenu from './menu/MainMenu';
-import Logo from '../assets/logo/text-tomatoes.png';
+import Logo from '../assets/logo/logo.png';
 
 export default {
     name: 'MainHeader',

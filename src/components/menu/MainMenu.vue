@@ -46,7 +46,7 @@ export default {
 
 <style lang="scss" scoped>
 .main_menu {
-    @apply flex z-20;
+    @apply flex z-20 items-center;
     &-list {
         :deep(.menu_item) {
             @apply px-3;

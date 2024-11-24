@@ -2,7 +2,7 @@
   <div class="purchase_page">
     <span>{{ $t('purchasePage.info') }}</span>
     <router-link class="redirect-link" to="contact?purchaseMode=true" @click="$emit('navigate')">
-      <span class="link">this form</span>
+      <span class="link">{{ $t('purchasePage.form') }}</span>
     </router-link>
   </div>
 </template>

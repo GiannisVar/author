@@ -47,10 +47,11 @@ export default {
     },
     homePage: {
         titleStart: 'Welcome to the website of',
-        name: 'Angela Kalliora',
+        name: 'Lina Kalliora',
         titleEnd: 'author of "Book Title"'
     },
     purchasePage: {
         info: 'Unfortunatelly, there is no store where you can find the book. However, you can contact me for more information through ',
+        form: 'the form',
     }
 }

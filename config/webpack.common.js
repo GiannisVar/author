@@ -23,7 +23,7 @@ module.exports = {
     //Plugins to help and include additionals functionalities to webpack
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'Angela Kalliora',
+            title: 'Lina Kalliora',
             favicon: path.resolve(__base, 'public', 'favicon.ico'),
             template: path.resolve(__base, 'public', 'index.html'),
         }),
