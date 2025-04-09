@@ -16,7 +16,7 @@
             <label for="last_name">
               {{ $t('contactForm.lastName') }}
             </label>
-            <Field  type="text" name="last_name" v-slot="{ field, errorMessage }" :validateOnInput="true" v-model="form.lastName">
+            <Field type="text" name="last_name" v-slot="{ field, errorMessage }" :validateOnInput="true" v-model="form.lastName">
               <input v-bind="field"  id="last_name" class="contact_me_form-field-form" :class="{ 'contact_me_form-field-form--error' : !!errorMessage}">
               <span class="contact_me_form-field-error-message">{{ errorMessage }}</span>
             </Field>
@@ -26,7 +26,7 @@
           <label for="email">
             {{ $t('contactForm.email') }}
           </label>
-          <Field  type="text" name="email" v-slot="{ field, errorMessage }" :validateOnInput="true" v-model="form.email">
+          <Field type="text" name="email" v-slot="{ field, errorMessage }" :validateOnInput="true" v-model="form.email">
             <input v-bind="field" id="email" class="contact_me_form-field-form" :class="{ 'contact_me_form-field-form--error' : !!errorMessage}">
             <span class="contact_me_form-field-error-message">{{ errorMessage }}</span>
           </Field>
@@ -35,7 +35,7 @@
           <label for="subject">
             {{ $t('contactForm.subject') }}
           </label>
-          <Field  type="text" name="subject" v-slot="{ field, errorMessage }" :validateOnInput="true" v-model="form.subject">
+          <Field type="text" name="subject" v-slot="{ field, errorMessage }" :validateOnInput="true" v-model="form.subject">
             <input v-bind="field" id="subject" class="contact_me_form-field-form" :class="{ 'contact_me_form-field-form--error' : !!errorMessage}">
             <span class="contact_me_form-field-error-message">{{ errorMessage }}</span>
           </Field>
@@ -44,9 +44,19 @@
           <label for="message">
             {{ $t('contactForm.message') }}
           </label>
-          <Field  type="textarea" name="message" v-slot="{ field, errorMessage }" :validateOnInput="true" v-model="form.message">
+          <Field type="textarea" name="message" v-slot="{ field, errorMessage }" :validateOnInput="true" v-model="form.message">
             <textarea v-bind="field" id="message" class="contact_me_form-field-form" :class="{ 'contact_me_form-field-form--error' : !!errorMessage}" />
             <span class="contact_me_form-field-error-message">{{ errorMessage }}</span>
+          </Field>
+        </div>
+        <div class="contact_me_form-field w-full flex">
+          <Field v-slot="{ field, errorMessage }" name="terms" type="checkbox" :value="true" :unchecked-value="false">
+              <input type="checkbox" name="terms" v-bind="field" :value="true" />
+              <div class="ml-1">
+                <span>{{ $t('contactForm.terms1') }}</span>
+                <a class="contact_me_form-field-open-modal-link" @click="openTermsModal">{{ $t('contactForm.terms2') }}</a>
+              </div>
+              <span class="contact_me_form-field-error-message">{{ errorMessage }}</span>
           </Field>
         </div>
         <button 
@@ -81,16 +91,18 @@ export default {
         email: '',
         subject: '',
         message: '',
+        terms: false,
       }
     }
   },
   created() {
     this.schema = yup.object({
-      first_name: yup.string().required().label(this.$t('contactForm.firstName')),
-      last_name: yup.string().required().label(this.$t('contactForm.lastName')),
-      email: yup.string().required().email().label(this.$t('contactForm.email')),
-      subject: yup.string().required().label(this.$t('contactForm.subject')),
-      message: yup.string().required().label(this.$t('contactForm.message')),
+      first_name: yup.string().required(this.$t('contactForm.errorMessages.required.firstName')).label(this.$t('contactForm.firstName')),
+      last_name: yup.string().required(this.$t('contactForm.errorMessages.required.lastName')).label(this.$t('contactForm.lastName')),
+      email: yup.string().required(this.$t('contactForm.errorMessages.required.email')).email(this.$t('contactForm.errorMessages.format.email')).label(this.$t('contactForm.email')),
+      subject: yup.string().required(this.$t('contactForm.errorMessages.required.subject')).label(this.$t('contactForm.subject')),
+      message: yup.string().required(this.$t('contactForm.errorMessages.required.message')).label(this.$t('contactForm.message')),
+      terms: yup.boolean().isTrue(this.$t('contactForm.errorMessages.required.terms')),
     });
   },
   mounted() {
@@ -154,6 +166,9 @@ export default {
         autoClose: 3000,
       });
     },
+    openTermsModal() {
+      console.log('openTermsModal');
+    }
   }
 }
 </script>
@@ -174,8 +189,11 @@ export default {
         @apply text-base;
       }
     }
+    &-open-modal-link {
+      @apply underline text-link cursor-pointer;
+    }
     &-form {
-      @apply shadow bg-gray-200 appearance-none rounded w-full py-2 px-4 text-gray-500 leading-tight text-sm;
+      @apply shadow bg-gray-200 appearance-none rounded w-full py-2 px-4 text-gray-500 leading-tight text-sm border border-gray-200;
       @screen sm {
         @apply text-base;
       }

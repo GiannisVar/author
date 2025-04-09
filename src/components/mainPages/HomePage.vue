@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import Book from '../../assets/book_sample.png';
+import Book from '../../assets/book.png';
 import { PAGES } from '../../router/paths';
 
 export default {

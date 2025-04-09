@@ -19,8 +19,23 @@ export default {
         email: 'Email Address',
         subject: 'Subject',
         message: 'Message',
+        terms1: 'I accept and have read the Terms of Use and Data Privacy Policy',
+        terms2: 'Terms of Use and Data Privacy Policy',
         purchaseMode: {
           subject: 'Information regarding the purchase of the book'
+        },
+        errorMessages: {
+            required: {
+              firstName: 'First Name is required',
+              lastName: 'Last Name is required',
+              email: 'Email is required',
+              subject: 'Subject is required',
+              message: 'Message is required',
+              terms: 'You must read and accept the Terms & Conditions',
+            },
+            format: {
+                email: 'Email Address must be a valid email',
+            }
         },
     },
     buttons: {
@@ -31,7 +46,7 @@ export default {
         buyBook: 'Buy the book now!',
     },
     toastrMessages: {
-        success: 'Your message has been sent succssfully!',
+        success: 'Your message has been sent successfully!',
         error: 'Oops! Something went wrong. Try again'
     },
     bookPage: {
@@ -48,7 +63,7 @@ export default {
     homePage: {
         titleStart: 'Welcome to the website of',
         name: 'Lina Kalliora',
-        titleEnd: 'author of "Book Title"'
+        titleEnd: 'author of "My Friend Akin"'
     },
     purchasePage: {
         info: 'Unfortunatelly, there is no store where you can find the book. However, you can contact me for more information through ',

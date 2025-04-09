@@ -3,17 +3,17 @@
     <div class="initial-info">
       <MqResponsive target="xs-">
         <h2 class="subtitle">{{ $t('bookPage.subtitle1') }}</h2>
-        <img :src="bookHero" class="book-hero" />
+        <img :src="bookHeroes" class="book-heroes" />
       </MqResponsive>
       <MqResponsive target="sm+">
-        <img :src="bookHero" class="book-hero" />
+        <img :src="bookHeroes" class="book-heroes" />
         <h2 class="subtitle">{{ $t('bookPage.subtitle1') }}</h2>
       </MqResponsive>
       <div v-html="$t('bookPage.initialInfo')"></div>
     </div>
     <TextDivider />
     <div class="main-description">
-      <img :src="bookCover" class="book-cover" />
+      <img :src="book" class="book-cover" />
       <div class="description">
         <h2 class="subtitle">{{ $t('bookPage.subtitle2') }}</h2>
         <div v-html="$t('bookPage.description')"></div>
@@ -28,15 +28,15 @@
 <script>
 import { MqResponsive } from 'vue3-mq';
 import TextDivider from '../common/TextDivider';
-import BookHero from '../../assets/book_hero.png';
-import BookCover from '../../assets/book_cover.jpg';
+import BookHeroes from '../../assets/book_heroes.png';
+import Book from '../../assets/book.png';
 
 export default {
   name: 'BookPage',
   components: { TextDivider, MqResponsive },
   created() {
-    this.bookHero = BookHero;
-    this.bookCover = BookCover;
+    this.bookHeroes = BookHeroes;
+    this.book = Book;
   },
 }
 </script>
@@ -46,9 +46,10 @@ export default {
   .subtitle {
     @apply text-base font-bold pb-8;
   }
-  .book-hero {
+  .book-heroes {
     @apply object-contain mx-auto pb-12 h-auto;
     width: 300px;
+    max-height: 300px;
     @screen sm {
       @apply float-right pb-2 pl-3;
     }

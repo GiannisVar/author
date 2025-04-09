@@ -19,6 +19,7 @@ module.exports = {
       'gold-100': '#ADA68D',
       'error-500': '#f56565',
       'error-700': '#930900',
+      'link': '#005cd0',
     },
     screens: {
       xs: '450px',
