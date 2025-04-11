@@ -15,6 +15,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 
 library.add(fasX);
 export default {
+  // eslint-disable-next-line
   name: 'Modal',
   methods: {
     closeModal() {
