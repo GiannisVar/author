@@ -69,8 +69,8 @@
           </div>
           <button
             class="contact_me_form-submit-button"
-            :class="{ 'contact_me_form-submit-button--error' : !form.terms || isFormFieldsEmpty || !!Object.keys(errors).length }"
-            :disabled="!form.terms || isFormFieldsEmpty || !!Object.keys(errors).length || isSubmitting"
+            :class="{ 'contact_me_form-submit-button--error' : isFormFieldsEmpty || !!Object.keys(errors).length }"
+            :disabled="isFormFieldsEmpty || !!Object.keys(errors).length || isSubmitting"
             @click="submit">{{ $t('buttons.submit') }}
           </button>
         </form>
@@ -125,7 +125,7 @@ export default {
   },
   computed: {
     isFormFieldsEmpty() {
-      return Object.values(this.form).some(val => val === '');
+      return Object.values(this.form).some(val => val === '' || val === false);
     }
   },
   methods: {
