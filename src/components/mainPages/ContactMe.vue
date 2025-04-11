@@ -1,71 +1,80 @@
 <template>
-  <div class="contact_me_page">
-    <div class="contact_me_form">
-      <Form ref="form" novalidate :validation-schema="schema" v-slot="{ errors }">
-        <div class="contact_me_form-initial-infos">
-          <div class="contact_me_form-field w-full sm:w-1/2">
-            <label for="first_name">
-              {{ $t('contactForm.firstName') }}
+  <div class="contact-me">
+    <teleport to="body">
+      <Transition class="terms-modal" v-if="displayTacModal" name="fade">
+        <Modal @closeModal="changeModalStatus">
+          <span v-html="$t('contactForm.termsAndConditions')"></span>
+        </Modal>
+      </Transition>
+    </teleport>
+    <div class="contact_me_page">
+      <div class="contact_me_form">
+        <Form ref="form" novalidate :validation-schema="schema" v-slot="{ errors }">
+          <div class="contact_me_form-initial-infos">
+            <div class="contact_me_form-field w-full sm:w-1/2">
+              <label for="first_name">
+                {{ $t('contactForm.firstName') }}
+              </label>
+              <Field type="text" name="first_name" v-slot="{ field, errorMessage }" :validateOnInput="true" v-model="form.firstName">
+                <input v-bind="field" id="first_name" class="contact_me_form-field-form" :class="{ 'contact_me_form-field-form--error' : !!errorMessage}">
+                <span class="contact_me_form-field-error-message">{{ errorMessage }}</span>
+              </Field>
+            </div>
+            <div class="contact_me_form-field w-full sm:w-1/2">
+              <label for="last_name">
+                {{ $t('contactForm.lastName') }}
+              </label>
+              <Field type="text" name="last_name" v-slot="{ field, errorMessage }" :validateOnInput="true" v-model="form.lastName">
+                <input v-bind="field"  id="last_name" class="contact_me_form-field-form" :class="{ 'contact_me_form-field-form--error' : !!errorMessage}">
+                <span class="contact_me_form-field-error-message">{{ errorMessage }}</span>
+              </Field>
+            </div>
+          </div>
+          <div class="contact_me_form-field w-full">
+            <label for="email">
+              {{ $t('contactForm.email') }}
             </label>
-            <Field type="text" name="first_name" v-slot="{ field, errorMessage }" :validateOnInput="true" v-model="form.firstName">
-              <input v-bind="field" id="first_name" class="contact_me_form-field-form" :class="{ 'contact_me_form-field-form--error' : !!errorMessage}">
+            <Field type="text" name="email" v-slot="{ field, errorMessage }" :validateOnInput="true" v-model="form.email">
+              <input v-bind="field" id="email" class="contact_me_form-field-form" :class="{ 'contact_me_form-field-form--error' : !!errorMessage}">
               <span class="contact_me_form-field-error-message">{{ errorMessage }}</span>
             </Field>
           </div>
-          <div class="contact_me_form-field w-full sm:w-1/2">
-            <label for="last_name">
-              {{ $t('contactForm.lastName') }}
+          <div class="contact_me_form-field w-full">
+            <label for="subject">
+              {{ $t('contactForm.subject') }}
             </label>
-            <Field type="text" name="last_name" v-slot="{ field, errorMessage }" :validateOnInput="true" v-model="form.lastName">
-              <input v-bind="field"  id="last_name" class="contact_me_form-field-form" :class="{ 'contact_me_form-field-form--error' : !!errorMessage}">
+            <Field type="text" name="subject" v-slot="{ field, errorMessage }" :validateOnInput="true" v-model="form.subject">
+              <input v-bind="field" id="subject" class="contact_me_form-field-form" :class="{ 'contact_me_form-field-form--error' : !!errorMessage}">
               <span class="contact_me_form-field-error-message">{{ errorMessage }}</span>
             </Field>
           </div>
-        </div>
-        <div class="contact_me_form-field w-full">
-          <label for="email">
-            {{ $t('contactForm.email') }}
-          </label>
-          <Field type="text" name="email" v-slot="{ field, errorMessage }" :validateOnInput="true" v-model="form.email">
-            <input v-bind="field" id="email" class="contact_me_form-field-form" :class="{ 'contact_me_form-field-form--error' : !!errorMessage}">
-            <span class="contact_me_form-field-error-message">{{ errorMessage }}</span>
-          </Field>
-        </div>
-        <div class="contact_me_form-field w-full">
-          <label for="subject">
-            {{ $t('contactForm.subject') }}
-          </label>
-          <Field type="text" name="subject" v-slot="{ field, errorMessage }" :validateOnInput="true" v-model="form.subject">
-            <input v-bind="field" id="subject" class="contact_me_form-field-form" :class="{ 'contact_me_form-field-form--error' : !!errorMessage}">
-            <span class="contact_me_form-field-error-message">{{ errorMessage }}</span>
-          </Field>
-        </div>
-        <div class="contact_me_form-field w-full">
-          <label for="message">
-            {{ $t('contactForm.message') }}
-          </label>
-          <Field type="textarea" name="message" v-slot="{ field, errorMessage }" :validateOnInput="true" v-model="form.message">
-            <textarea v-bind="field" id="message" class="contact_me_form-field-form" :class="{ 'contact_me_form-field-form--error' : !!errorMessage}" />
-            <span class="contact_me_form-field-error-message">{{ errorMessage }}</span>
-          </Field>
-        </div>
-        <div class="contact_me_form-field w-full flex">
-          <Field v-slot="{ field, errorMessage }" name="terms" type="checkbox" :value="true" :unchecked-value="false">
-              <input type="checkbox" name="terms" v-bind="field" :value="true" />
-              <div class="ml-1">
-                <span>{{ $t('contactForm.terms1') }}</span>
-                <a class="contact_me_form-field-open-modal-link" @click="openTermsModal">{{ $t('contactForm.terms2') }}</a>
-              </div>
+          <div class="contact_me_form-field w-full">
+            <label for="message">
+              {{ $t('contactForm.message') }}
+            </label>
+            <Field type="textarea" name="message" v-slot="{ field, errorMessage }" :validateOnInput="true" v-model="form.message">
+              <textarea v-bind="field" id="message" class="contact_me_form-field-form" :class="{ 'contact_me_form-field-form--error' : !!errorMessage}" />
               <span class="contact_me_form-field-error-message">{{ errorMessage }}</span>
-          </Field>
-        </div>
-        <button 
-          class="contact_me_form-submit-button" 
-          :class="{ 'contact_me_form-submit-button--error' : isFormFieldsEmpty || !!Object.keys(errors).length }" 
-          :disabled="isFormFieldsEmpty || !!Object.keys(errors).length || isSubmitting" 
-          @click="submit">{{ $t('buttons.submit') }}
-        </button>
-      </form>
+            </Field>
+          </div>
+          <div class="contact_me_form-field w-full flex">
+            <Field v-slot="{ field, errorMessage }" name="terms" type="checkbox" :value="true" :unchecked-value="false">
+                <input type="checkbox" name="terms" v-bind="field" :value="true" @change="changeTermsAcceptanceStatus" />
+                <div class="ml-1">
+                  <span>{{ $t('contactForm.terms1') }}</span>
+                  <a class="contact_me_form-field-open-modal-link" @click="changeModalStatus">{{ $t('contactForm.terms2') }}</a>
+                </div>
+                <span class="contact_me_form-field-error-message">{{ errorMessage }}</span>
+            </Field>
+          </div>
+          <button
+            class="contact_me_form-submit-button"
+            :class="{ 'contact_me_form-submit-button--error' : !form.terms || isFormFieldsEmpty || !!Object.keys(errors).length }"
+            :disabled="!form.terms || isFormFieldsEmpty || !!Object.keys(errors).length || isSubmitting"
+            @click="submit">{{ $t('buttons.submit') }}
+          </button>
+        </form>
+      </div>
     </div>
   </div>
 </template>
@@ -75,15 +84,18 @@ import emailjs from '@emailjs/browser';
 import { Form, Field } from 'vee-validate';
 import * as yup from 'yup';
 import { toast } from 'vue3-toastify';
+import Modal from '../common/Modal';
 
 export default {
   name: 'ContactMe',
   components: {
     Form,
-    Field 
+    Field,
+    Modal
   },
   data() {
     return {
+      displayTacModal: false,
       isSubmitting: false,
       form: {
         firstName: '',
@@ -117,6 +129,9 @@ export default {
     }
   },
   methods: {
+    changeTermsAcceptanceStatus(event) {
+      this.form.terms = event.target.checked;
+    },
     submit(event) {
       this.isSubmitting = true;
       event.preventDefault();
@@ -166,53 +181,71 @@ export default {
         autoClose: 3000,
       });
     },
-    openTermsModal() {
-      console.log('openTermsModal');
+    changeModalStatus() {
+      this.displayTacModal = !this.displayTacModal;
+      this.$emit('displayModal', this.displayTacModal);
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.contact_me_form {
-  &-initial-infos {
-    @apply w-full flex flex-col;
-    @screen sm {
-      @apply flex-row gap-4;
+.contact-me {
+  @apply relative;
+  &--mask {
+    @apply absolute w-screen h-screen opacity-80 bg-white z-10;
+  }
+  .terms-modal {
+    .fade-enter-active,
+    .fade-leave-active {
+      transition: opacity 1s ease;
+    }
+
+    .fade-enter-from,
+    .fade-leave-to {
+      opacity: 0;
     }
   }
-  &-field {
-    @apply relative mt-7;
-    label {
-      @apply block text-gray-500 text-sm mb-2;
+  .contact_me_form {
+    &-initial-infos {
+      @apply w-full flex flex-col;
       @screen sm {
-        @apply text-base;
+        @apply flex-row gap-4;
       }
     }
-    &-open-modal-link {
-      @apply underline text-link cursor-pointer;
+    &-field {
+      @apply relative mt-7;
+      label {
+        @apply block text-gray-500 text-sm mb-2;
+        @screen sm {
+          @apply text-base;
+        }
+      }
+      &-open-modal-link {
+        @apply underline text-link cursor-pointer;
+      }
+      &-form {
+        @apply shadow bg-gray-200 appearance-none rounded w-full py-2 px-4 text-gray-500 leading-tight text-sm border border-gray-200;
+        @screen sm {
+          @apply text-base;
+        }
+        &:focus {
+          @apply bg-white border border-gray-500 outline-none;
+        }
+        &--error {
+          @apply border border-error-500;
+        }
+      }
+      &-error-message {
+        @apply text-error-700 text-xs absolute left-0;
+        bottom: -20px;
+      }
     }
-    &-form {
-      @apply shadow bg-gray-200 appearance-none rounded w-full py-2 px-4 text-gray-500 leading-tight text-sm border border-gray-200;
-      @screen sm {
-        @apply text-base;
-      }
-      &:focus {
-        @apply bg-white border border-gray-500 outline-none;
-      }
+    &-submit-button {
+      @apply flex cursor-pointer bg-white mx-auto hover:bg-gray-100 text-gray-500 py-2 px-4 border border-gray-200 rounded shadow mt-6;
       &--error {
-        @apply border border-error-500;
+        @apply cursor-not-allowed hover:bg-white;
       }
-    }
-    &-error-message {
-      @apply text-error-700 text-xs absolute left-0;
-      bottom: -20px;
-    }
-  }
-  &-submit-button {
-    @apply flex cursor-pointer bg-white mx-auto hover:bg-gray-100 text-gray-500 py-2 px-4 border border-gray-200 rounded shadow mt-6;
-    &--error {
-      @apply cursor-not-allowed hover:bg-white;
     }
   }
 }

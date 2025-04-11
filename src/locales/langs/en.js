@@ -19,7 +19,7 @@ export default {
         email: 'Email Address',
         subject: 'Subject',
         message: 'Message',
-        terms1: 'I accept and have read the Terms of Use and Data Privacy Policy',
+        terms1: 'I accept and have read the ',
         terms2: 'Terms of Use and Data Privacy Policy',
         purchaseMode: {
           subject: 'Information regarding the purchase of the book'
@@ -37,6 +37,44 @@ export default {
                 email: 'Email Address must be a valid email',
             }
         },
+        termsAndConditions: `<h2>Contact Form Terms and Conditions</h2>
+          <ol>
+            <li style="list-style: inside;">
+              <strong>Data Collection and Use</strong><br>
+              By submitting this form, you consent to the collection and use of the information you provide.
+              The data will only be used to respond to your inquiry or provide the requested services.
+            </li>
+            <li style="list-style: inside;">
+              <strong>Data Protection</strong><br>
+              All information submitted through this form will be kept confidential and stored securely.
+              Your data will not be shared with third parties without your consent, unless required by law.
+            </li>
+            <li style="list-style: inside;">
+              <strong>User Consent</strong><br>
+              By using this form, you agree to these terms and confirm that the information provided is accurate and truthful.
+            </li>
+            <li style="list-style: inside;">
+              <strong>No Obligation</strong><br>
+              Submitting the contact form does not establish a formal relationship (e.g., client, contract, etc.) unless explicitly stated.
+            </li>
+            <li style="list-style: inside;">
+              <strong>Communication</strong><br>
+              We may contact you via email or phone based on the information you submit, solely regarding your inquiry.
+              You may request to stop communication at any time.
+            </li>
+            <li style="list-style: inside;">
+              <strong>Cookies and Tracking</strong><br>
+              This website may use cookies to improve user experience. Usage of the contact form implies acceptance of these practices (if applicable).
+            </li>
+            <li style="list-style: inside;">
+              <strong>Retention of Data</strong><br>
+              Submitted data may be retained for a reasonable period of time to follow up on your inquiry or for legal/accounting purposes.
+            </li>
+            <li style="list-style: inside;">
+              <strong>Modifications</strong><br>
+              We reserve the right to update these terms and conditions at any time without prior notice.
+            </li>
+          </ol>`,
     },
     buttons: {
         'submit': 'Submit',
@@ -66,7 +104,7 @@ export default {
         titleEnd: 'author of "My Friend Akin"'
     },
     purchasePage: {
-        info: 'Unfortunatelly, there is no store where you can find the book. However, you can contact me for more information through ',
+        info: 'Unfortunately, there is no store where you can find the book. However, you can contact me for more information through ',
         form: 'the form',
     }
 }

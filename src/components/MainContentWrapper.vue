@@ -1,7 +1,7 @@
 <template>
   <div class="main_content_wrapper">
     <h1 v-if="!isHomePage && !!routeNameTranslation" class="title">{{ routeNameTranslation }}</h1>
-    <router-view @navigate="$emit('navigation')"/>
+    <router-view @navigate="$emit('navigation')" @displayModal="$emit('displayModal', $event)"/>
   </div>
 </template>
 

@@ -5,6 +5,9 @@
         <img :src="loaderImage" alt="loader" />
       </div>
     </Transition>
+    <Transition name="opacity2">
+      <div v-if="displayModal" class="modal-mask"></div>
+    </Transition>
     <MqResponsive target="xs-">
       <Transition name="opacity2">
         <div v-if="isSideBarMenuOpen" class="mask"></div>
@@ -12,7 +15,7 @@
     </MqResponsive>
     <div class="main_content">
       <MainHeader class="header" @open_sidebar="sidebarMenuHandler" @navigation="setLoader(true)"/>
-      <MainContentWrapper :isHomePage="isHomepage" @navigation="setLoader(true)" />
+      <MainContentWrapper :isHomePage="isHomepage" @navigation="setLoader(true)" @displayModal="setDisplayModal($event)"/>
       <SocialMediaWrapper class="footer"/>
     </div>
   </div>
@@ -38,6 +41,7 @@ export default {
     return {
       isSideBarMenuOpen: false,
       isLoading: false,
+      displayModal: false,
     }
   },
   created() {
@@ -63,6 +67,9 @@ export default {
     },
     setLoader(state) { 
       this.isLoading = state;
+    },
+    setDisplayModal(event) {
+      this.displayModal = event;
     }
   },
 }
@@ -72,6 +79,9 @@ export default {
   .main_app {
     @apply flex w-full relative overflow-x-clip bg-nude;
     min-height: 100vh;
+    .modal-mask {
+      @apply absolute w-screen h-full opacity-80 bg-white z-50;
+    }
     .mask {
       @apply absolute w-screen h-screen opacity-80 bg-white z-10;
     }
