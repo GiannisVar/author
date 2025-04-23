@@ -1,7 +1,7 @@
 <template>
     <div class="social_list">
         <template v-for="item in items" :key="item.id">
-            <font-awesome-icon class="social-icon" @click="redirectTo(item.path)" :icon="item.icon" />
+            <font-awesome-icon class="social-icon" @click="redirectTo(item.prefix, item.path)" :icon="item.icon" />
         </template>
     </div>
 </template>
@@ -22,10 +22,13 @@ export default {
     name: 'SocialMediaWrapper',
     created() {
         this.items = SOCIAL_MEDIA;
+        this.isMobile = window.navigator.maxTouchPoints > 0;
     },
     methods: {
-        redirectTo(path) {
-            window.open(path, '_blank');
+        redirectTo(prefix, path) {
+          const target = this.isMobile ? '_self' : '_blank';
+          const finalPath = `${this.isMobile ? prefix.mobile : prefix.desktop}${path}`;
+          window.open(finalPath, target);
         },
     },
 }
@@ -35,7 +38,7 @@ export default {
 .social_list {
     @apply flex justify-center;
     .social-icon {
-        @apply mx-4 w-auto cursor-pointer;
+        @apply mx-2 w-auto cursor-pointer;
         height: 1.5em;
         @screen sm {
             @apply mx-8;
