@@ -67,6 +67,7 @@
                 <span class="contact_me_form-field-error-message">{{ errorMessage }}</span>
             </Field>
           </div>
+          <div class="cf-turnstile"></div>
           <button
             class="contact_me_form-submit-button"
             :class="{ 'contact_me_form-submit-button--error' : isFormFieldsEmpty || !!Object.keys(errors).length }"
@@ -97,6 +98,7 @@ export default {
     return {
       displayTacModal: false,
       isSubmitting: false,
+      turnstileToken: '',
       form: {
         firstName: '',
         lastName: '',
@@ -118,6 +120,17 @@ export default {
     });
   },
   mounted() {
+    window.onTurnstileSuccess = this.onTurnstileSuccess;
+    const renderInterval = setInterval(() => {
+      if (window.turnstile) {
+        clearInterval(renderInterval);
+        window.turnstile.render('.cf-turnstile', {
+          sitekey: process.env.TURNSTILE_SITE_KEY,
+          callback: window.onTurnstileSuccess,
+          theme: 'light',
+        });
+      }
+    }, 100);
     if(this.$route.query?.purchaseMode) {
       this.$refs.form.setFieldValue('subject', this.$t('contactForm.purchaseMode.subject'));
       this.$router.replace({'query': null});
@@ -132,7 +145,10 @@ export default {
     changeTermsAcceptanceStatus(event) {
       this.form.terms = event.target.checked;
     },
-    submit(event) {
+    onTurnstileSuccess(token) {
+      this.turnstileToken = token;
+    },
+    async submit(event) {
       this.isSubmitting = true;
       event.preventDefault();
       const toaster = toast('Please wait...',
@@ -145,7 +161,26 @@ export default {
           closeButton: false,
         },
       );
-      this.sendEmail(toaster);
+      try {
+        const response = await fetch('https://turnstileverificationscript.giannis-vrchos.workers.dev', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: new URLSearchParams({
+            'cf-turnstile-response': this.turnstileToken
+          })
+        });
+        if(response.ok) {
+          this.sendEmail(toaster);
+        } else {
+          this.updateToast(toaster, 'error', this.$t('toastrMessages.error'));
+          this.isSubmitting = false;
+        }
+      } catch {
+        this.updateToast(toaster, 'error', this.$t('toastrMessages.error'));
+        this.isSubmitting = false;
+      }
     },
     sendEmail(toaster) {
       emailjs
@@ -247,6 +282,9 @@ export default {
         @apply cursor-not-allowed hover:bg-white;
       }
     }
+  }
+  .cf-turnstile {
+    margin-top: 2em;
   }
 }
 </style>
