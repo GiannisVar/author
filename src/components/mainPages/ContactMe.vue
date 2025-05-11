@@ -125,7 +125,7 @@ export default {
       if (window.turnstile) {
         clearInterval(renderInterval);
         window.turnstile.render('.cf-turnstile', {
-          sitekey: process.env.TURNSTILE_SITE_KEY,
+          sitekey: process.env.VUE_APP_TURNSTILE_SITE_KEY,
           callback: window.onTurnstileSuccess,
           theme: 'light',
         });
