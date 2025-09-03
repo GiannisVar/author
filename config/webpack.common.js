@@ -29,7 +29,9 @@ module.exports = {
             template: path.resolve(basePath, 'public', 'index.html'),
         }),
         new VueLoaderPlugin(),
-        new Dotenv(),
+        new Dotenv({
+            systemvars: true,
+        }),
         new ESLintPlugin(),
     ],
 
