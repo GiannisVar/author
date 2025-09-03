@@ -41,7 +41,7 @@ export default {
         @apply mx-2 w-auto cursor-pointer;
         height: 1.5em;
         @screen sm {
-            @apply mx-8;
+            @apply mx-4;
             height: 1.75em;
         }
     }

@@ -9,14 +9,14 @@
         <img :src="bookHeroes" class="book-heroes" />
         <h2 class="subtitle">{{ $t('bookPage.subtitle1') }}</h2>
       </MqResponsive>
-      <div v-html="$t('bookPage.initialInfo')"></div>
+      <div class="content" v-html="$t('bookPage.initialInfo')"></div>
     </div>
     <TextDivider />
     <div class="main-description">
       <img :src="book" class="book-cover" />
       <div class="description">
         <h2 class="subtitle">{{ $t('bookPage.subtitle2') }}</h2>
-        <div v-html="$t('bookPage.description')"></div>
+        <div class="content" v-html="$t('bookPage.description')"></div>
       </div>
     </div>
     <router-link class="redirect-link" to="purchase" @click="$emit('navigate')">
@@ -43,19 +43,25 @@ export default {
 
 <style lang="scss" scoped>
 .book_page {
-  .subtitle {
-    @apply text-base font-bold pb-8;
-  }
-  .book-heroes {
-    @apply object-contain mx-auto pb-12 h-auto;
-    width: 300px;
-    max-height: 300px;
-    @screen sm {
-      @apply float-right pb-2 pl-3;
+  .initial-info {
+    .subtitle {
+      @apply text-xl font-bold pb-8;
+    }
+    .book-heroes {
+      @apply object-contain mx-auto pb-12 h-auto;
+      width: 300px;
+      max-height: 300px;
+      @screen sm {
+        @apply float-right pb-2 pl-3;
+      }
+    }
+    .content {
+      font-size: 1.2rem;
+      line-height: 1.75rem;
     }
   }
   .main-description {
-    @apply flex flex-col;
+    @apply flex flex-col w-full;
     @screen sm {
       @apply flex-row;
     }
@@ -67,9 +73,16 @@ export default {
         height: 500px;
       }
     }
+    .subtitle {
+      @apply text-xl font-bold pb-8;
+    }
     .description {
       @screen sm {
         @apply w-1/2;
+      }
+      .content {
+        font-size: 1.2rem;
+        line-height: 1.75rem;
       }
     }
   }

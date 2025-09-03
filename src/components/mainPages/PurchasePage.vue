@@ -15,9 +15,13 @@ export default {
 
 <style lang="scss" scoped>
 .purchase_page {
+  > span {
+    font-size: 1.2rem;
+    line-height: 1.75rem;
+  }
  .redirect-link {
     .link {
-      @apply text-lg underline cursor-pointer;
+      @apply text-xl text-link underline cursor-pointer;
     }
   }
 }

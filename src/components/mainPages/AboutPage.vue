@@ -74,11 +74,15 @@ export default {
         @apply float-left pb-4 pr-6;
       }
     }
+    > p {
+      font-size: 1.2rem;
+      line-height: 1.75rem;
+    }
   }
   .moments {
     @apply my-6;
     .title {
-      @apply text-base font-bold pb-8;
+      @apply text-xl font-bold pb-8;
     }
   }
 }

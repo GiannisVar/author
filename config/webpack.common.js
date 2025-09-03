@@ -1,22 +1,23 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 const Dotenv = require('dotenv-webpack');
 
 //Just to help us with directories and folders path
-const __base = path.resolve(__dirname, '..');
-const __src = path.resolve(__base, 'src');
+const basePath = path.resolve(__dirname, '..');
+const srcPath = path.resolve(basePath, 'src');
 
 module.exports = {
     //Entry: main file that init our application
-    entry: path.resolve(__src, 'main.js'),
+    entry: path.resolve(srcPath, 'main.js'),
     devServer: {
         historyApiFallback: true
     },
     //Output: result of the bundle after webpack run
     output: {
         filename: '[name].bundle.js',
-        path: path.resolve(__base, 'dist'),
+        path: path.resolve(basePath, 'dist'),
         clean: true
     },
 
@@ -24,11 +25,12 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             title: 'Lina Kalliora',
-            favicon: path.resolve(__base, 'public', 'favicon.ico'),
-            template: path.resolve(__base, 'public', 'index.html'),
+            favicon: path.resolve(basePath, 'public', 'favicon.ico'),
+            template: path.resolve(basePath, 'public', 'index.html'),
         }),
         new VueLoaderPlugin(),
-        new Dotenv()
+        new Dotenv(),
+        new ESLintPlugin(),
     ],
 
     resolve: {
@@ -45,9 +47,9 @@ module.exports = {
                 loader: 'vue-loader',
                 options: {
                     compilerOptions: {
-                      isCustomElement: (tag) => ["swiper-container", "swiper-slide"].includes(tag)
+                        isCustomElement: (tag) => ["swiper-container", "swiper-slide"].includes(tag)
                     }
-                  },
+                },
             },
             //CSS loaders. Make possible import css files as js modules 
             {
